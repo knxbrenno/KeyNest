@@ -4,21 +4,7 @@
 
 Gerenciador de senhas de terminal escrito em Python, com **criptografia de verdade**: AES-256-GCM para o cofre e Argon2id para derivar a chave da senha mestra. Gera senhas e frases-senha seguras, verifica vazamentos sem expor a senha, gera códigos de autenticação em dois fatores (2FA) e audita o cofre em busca de senhas fracas ou repetidas.
 
-```
-$ keynest add github -u knxbrenno --url https://github.com -g 24 --copy
-Senha mestra:
-Entrada 'github' adicionada.
-Senha copiada. A área de transferência será limpa em 20s.
-
-$ keynest audit
-Senhas vazadas: 1 problema(s)
-  - netflix (vista 21.369 vezes)
-Senhas reutilizadas: OK
-Senhas fracas: 1 problema(s)
-  - netflix (muito fraca)
-
-Pontuação de segurança do cofre: 67/100
-```
+![KeyNest no terminal](docs/cli.png)
 
 ## Funcionalidades
 
