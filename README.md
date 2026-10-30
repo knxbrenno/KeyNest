@@ -1,4 +1,4 @@
-# 🔐 KeyNest
+# KeyNest
 
 [![Testes](https://github.com/knxbrenno/KeyNest/actions/workflows/tests.yml/badge.svg)](https://github.com/knxbrenno/KeyNest/actions/workflows/tests.yml)
 
