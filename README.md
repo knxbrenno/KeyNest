@@ -1,5 +1,7 @@
 # 🔐 KeyNest
 
+[![Testes](https://github.com/knxbrenno/KeyNest/actions/workflows/tests.yml/badge.svg)](https://github.com/knxbrenno/KeyNest/actions/workflows/tests.yml)
+
 Gerenciador de senhas de terminal escrito em Python, com **criptografia de verdade**: AES-256-GCM para o cofre e Argon2id para derivar a chave da senha mestra. Gera senhas e frases-senha seguras, verifica vazamentos sem expor a senha, gera códigos de autenticação em dois fatores (2FA) e audita o cofre em busca de senhas fracas ou repetidas.
 
 ```

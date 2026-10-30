@@ -79,6 +79,8 @@ def evaluate(password):
 
 def crack_time(entropy, guesses_per_second=1e10):
     """Tempo médio para quebrar offline com uma GPU potente (10 bilhões de tentativas/s)."""
+    if entropy > 200:  # Evita overflow de float; muito além de qualquer ataque possível
+        return "mais de 1 milhão de séculos"
     seconds = 2 ** entropy / 2 / guesses_per_second
     for unit, size in (("séculos", 3.15e9), ("anos", 3.15e7), ("dias", 86400), ("horas", 3600), ("minutos", 60)):
         if seconds >= size:

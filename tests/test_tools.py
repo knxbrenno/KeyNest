@@ -66,3 +66,9 @@ def test_pwned_uses_only_hash_prefix(monkeypatch):
     monkeypatch.setattr(pwned.urllib.request, "urlopen", fake_urlopen)
     assert pwned.pwned_count("password") == 9545824
     assert requested["url"] == "https://api.pwnedpasswords.com/range/" + digest[:5]
+
+
+def test_crack_time_handles_huge_entropy():
+    long_password = generator.generate_password(300)
+    assert strength.crack_time(strength.evaluate(long_password)["entropy"]) == "mais de 1 milhão de séculos"
+    assert strength.crack_time(0) == "instantâneo"

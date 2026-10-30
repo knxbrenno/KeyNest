@@ -180,7 +180,14 @@ def cmd_get(args):
     entry = resolve(vault, args.name)
 
     if args.field:
-        value = totp.generate(entry.totp) if args.field == "totp" and entry.totp else getattr(entry, args.field)
+        if args.field == "totp":
+            if not entry.totp:
+                raise CLIError(f"A entrada '{entry.name}' não tem 2FA configurado.")
+            value = totp.generate(entry.totp)
+        else:
+            value = getattr(entry, args.field)
+        if not value:
+            raise CLIError(f"O campo '{args.field}' de '{entry.name}' está vazio.")
         if args.show:
             print(value)
         else:
@@ -366,6 +373,12 @@ def cmd_import(args):
                 name = f"{base} ({n})"
                 n += 1
             existing.add(name.lower())
+            if data["totp"]:
+                try:
+                    totp.parse(data["totp"])
+                except Exception:  # Segredo inválido: guardado nas notas para não se perder
+                    data["notes"] = (data["notes"] + "\n" if data["notes"] else "") + f"TOTP: {data['totp']}"
+                    data["totp"] = ""
             vault.entries.append(Entry(name=name, username=data["username"], password=data["password"],
                                        url=data["url"], notes=data["notes"], totp=data["totp"]))
             added += 1
