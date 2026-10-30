@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keynest"
+version = "1.0.0"
+description = "Gerenciador de senhas de terminal com AES-256-GCM e Argon2id"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "cryptography>=41",
+    "argon2-cffi>=23",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+keynest = "keynest.cli:main"
+
+[tool.setuptools]
+packages = ["keynest"]
+
+[tool.setuptools.package-data]
+keynest = ["wordlist.txt"]
